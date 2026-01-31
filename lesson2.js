@@ -176,10 +176,91 @@
 // P.S. Попросите пользователя назвать родную страну
 
 
-const country = prompt('Напишите вашу страну!')
-if (country === 'Казахстан' || country === 'Kazakhstan') {
-    alert('Можете проходить!')
-}
-else {
-    alert('Вам вход воспрещен!')
-}
+// const country = prompt('Напишите вашу страну!')
+// if (country === 'Казахстан' || country === 'Kazakhstan') {
+//     alert('Можете проходить!')
+// }
+// else {
+//     alert('Вам вход воспрещен!')
+// }
+
+
+
+// Нужно определить является ли человек подростком
+// 13 - 20
+
+// const userAnswer = prompt('Введите ваш возраст:')
+// const userAge = Number(userAnswer)
+// console.log(userAge)
+
+// if (userAge >= 13 && userAge <= 19) { // true && false = false
+//     // && - всегда используйте при проверке интервала - от 13 до 20
+//     console.log('Вы подросток!')
+// }
+// else if (userAge < 13) {
+//     console.log('Вы ребенок. Играйте и развлекайтесь')
+// }
+// else if (userAge > 19) {
+//     console.log('Вы взрослый! Идите работать')
+// }
+
+
+
+// Задание 2
+
+// Запросите у пользователя число. Затем запросите степень, 
+// в которую нужно возвести это число. Выведите в консоль результат.
+
+// const userAnswer1 = prompt('Введите число:')
+// const userNumber1 = Number(userAnswer1)
+
+// const userAnswer2 = prompt('Введите степень:')
+// const userNumber2 = Number(userAnswer2)
+
+
+// console.log(userNumber1 ** userNumber2)
+
+
+
+// Задание 4
+
+// Создать произвольную переменную, 
+// присвоить ей произвольное строковое значение (например, "my text"). 
+// C помощью if написать условие: 
+// если значение переменной равно “some text”, 
+// присвоить ей значение “another text”, иначе - “some text”.
+
+// let myText = 'some text'
+
+// if (myText === 'some text') { // 'some text' === 'some text' => true
+//     myText = 'another text'
+// }
+// else {
+//     myText = 'some text'
+// }
+// console.log(myText) // 'another text'
+
+
+// Задание 5
+
+// Создать переменную и присвоить ей число.
+// Записать условие:
+// - если переменная равна нулю, присвоить ей 1;
+// - если меньше нуля - строку “less then zero”;
+// - если больше нуля - используя оператор “присвоение”, переменную умножить на 10 (использовать краткую запись).
+
+// num = num + 10
+// num += 10
+
+
+// let peremen = 5
+// if (peremen === 0) {
+//     peremen = 1
+// }
+// else if (peremen < 0) {
+//     peremen = 'less than zero'
+// }
+// else if (peremen > 0) {
+//     peremen *= 10
+// }
+// console.log(peremen)
