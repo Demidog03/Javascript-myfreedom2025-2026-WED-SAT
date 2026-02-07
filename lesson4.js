@@ -1,0 +1,171 @@
+// for (let i = 0; i < 10; i++) {
+//     console.log(i)
+// }
+
+
+
+// Задание 5
+
+// Напишите программу, которая выводит в консоль числа от 1 до 100.
+// При этом вместо чисел, кратных трем, программа должна выводить слово «Fizz»,
+// а вместо чисел, кратных пяти, — слово «Buzz».
+// Если число кратно и 3, и 5, то программа должна выводить слово «FizzBuzz»
+
+// else if
+// % => остаток => 3 % 3 = 0, 4 % 3 = 1
+
+// 1 => console.log(1)
+// 2 => console.log(2)
+// 3 => console.log('Fizz')
+// 4 => console.log(4)
+// 5 => console.log('Buzz)
+// ...
+// 15 => console.log('FizzBuzz')
+// ...
+
+// for (let i = 1; i <= 100; i++) {
+//     if (i % 3 === 0 && i % 5 === 0) { // 15 % 3 = 0, 15 % 5 = 0
+//         console.log('FizzBuzz')
+//     }
+//     else if (i % 3 === 0) { // 15 % 3 = 0
+//         console.log('Fizz')
+//     }
+//     else if (i % 5 === 0) { // 15 % 3 = 0
+//         console.log('Buzz')
+//     }
+//     else {
+//         console.log(i)
+//     }
+// }
+
+
+// WHILE LOOP
+
+// for (let i = 0; true; i++) {
+//     console.log('Hello')
+// }
+
+
+
+// while => в то время как, пока
+// let i = 0
+
+// while (i < 10) {
+//     i++
+//     console.log(i)
+// }
+
+// Проверка уведомление
+// Поставить таймер, секундомер
+
+// while (true) {
+//     console.log('Hello')
+// }
+
+
+// Задание 6
+
+// Перепишите код, заменив цикл for на while, без изменения поведения цикла.
+
+// for (let i = 0; i < 3; i++) {
+//     alert(`number ${i}!`);
+// }
+
+// let i = 0
+
+// while (i < 3) {
+//     alert(`number ${i}!`);
+//     i++
+// }
+
+// let i = 0
+
+// do {
+//     console.log('Hello')
+// } while (i < 0)
+
+
+// FUNCTION - ФУНКЦИИ
+
+
+// console.log('С Новым Годом, Айсултан!')
+// console.log('С Новым Годом, Альтаир!')
+// console.log('С Новым Годом, Тимур!')
+// console.log('С Новым Годом, Рабия!')
+
+// function sayHappyNewYear(personName = 'Пользователь') { // Arguments, Parameters, Params
+//     // 1
+//     // if (personName === undefined) {
+//     //     console.log('С Новым Годом, Пользователь!')
+//     // }
+//     // else {
+//     //     console.log(`С Новым Годом, ${personName}!`)
+//     // }
+
+//     //2
+//     // if (Boolean(personName) === false) { // Boolean(null) = false
+//     //     console.log('С Новым Годом, Пользователь!')
+//     // }
+//     // else {
+//     //     console.log(`С Новым Годом, ${personName}!`)
+//     // }
+
+//     // 3
+//     // if (!personName) { // !personName = если нет personName-а, если personName что то плохое (falsy)
+//     //     console.log('С Новым Годом, Пользователь!')
+//     // }
+//     // else {
+//     //     console.log(`С Новым Годом, ${personName}!`)
+//     // }
+
+//     //4
+//     // console.log(`С Новым Годом, ${!personName ? 'Пользователь' : personName}!`)
+
+//     //5
+//     console.log(`С Новым Годом, ${personName}!`)
+// }
+
+// sayHappyNewYear('Айсултан')
+// sayHappyNewYear('Альтаир')
+// sayHappyNewYear('Тимур')
+// sayHappyNewYear('Рабия')
+// sayHappyNewYear(null)
+
+
+// если не передаем параметр sayHappyNewYear() 
+// то нужно отображать в консоле `С Новым Годом, Пользователь!`
+
+
+
+
+function sumTwoNumbers(num1, num2) {
+    // if (num1 === undefined || num2 === undefined) {
+    if (arguments.length < 2) {
+        console.log('Некоторые аргументы отсутсвуют')
+    }
+    else if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+        console.log('Невалидные параметры')
+    }
+    else {
+        console.log(num1 + num2)
+    }
+}
+
+sumTwoNumbers(2, 2)
+sumTwoNumbers(5, 10)
+sumTwoNumbers('5', 5)
+sumTwoNumbers(null, undefined)
+sumTwoNumbers()
+sumTwoNumbers(3)
+
+// 1. Нужно проверить переданы ли все аргументы
+// Test cases:
+// sumTwoNumbers() => console.log('Некоторые аргументы отсутсвуют')
+// sumTwoNumbers(2) => console.log('Некоторые аргументы отсутсвуют')
+
+// 2. Нужно убедить что все параметры числа:
+// Test cases:
+// sumTwoNumbers('5', 5) => console.log('Невалидные параметры')
+// sumTwoNumbers(true, 'fdsfds') => console.log('Невалидные параметры')
+
+// typeof

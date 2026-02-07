@@ -110,9 +110,9 @@
 //     console.log(i ** 2)
 // }
 
-const userAnswer = prompt('Введите максимальное число: ')
-const userNumber = Number(userAnswer) // 0
-for (let i = 0; i < userNumber; i++) { // 0 < 0
-    // console.log(i * i)
-    console.log(i ** 2)
-}
+// const userAnswer = prompt('Введите максимальное число: ')
+// const userNumber = Number(userAnswer) // 0
+// for (let i = 0; i < userNumber; i++) { // 0 < 0
+//     // console.log(i * i)
+//     console.log(i ** 2)
+// }
