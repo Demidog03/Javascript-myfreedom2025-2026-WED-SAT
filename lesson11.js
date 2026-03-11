@@ -104,8 +104,8 @@
 // Далее написать JS код, который найдет в HTML все элементы с классом "forRemove" и удалит их.
 
 
-const elementsForRemove = document.querySelectorAll('.forRemove')
+// const elementsForRemove = document.querySelectorAll('.forRemove')
 
-for (const el of elementsForRemove) {
-    el.remove()
-}
+// for (const el of elementsForRemove) {
+//     el.remove()
+// }
