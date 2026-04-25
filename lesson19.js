@@ -461,42 +461,42 @@
 //     }
 // }
 
-class PaymentService {
-    async charge(amount) {
-        const isPaid = await fetch(`https://halykbank.api/pay`, {
-            body: order.amount
-        })
-        return isPaid
-    }
-}
+// class PaymentService {
+//     async charge(amount) {
+//         const isPaid = await fetch(`https://halykbank.api/pay`, {
+//             body: order.amount
+//         })
+//         return isPaid
+//     }
+// }
 
-class OrderRepository {
-    save(order) {
-        database.save(`INSERT INTO orders ...`, order)
-    }
-}
+// class OrderRepository {
+//     save(order) {
+//         database.save(`INSERT INTO orders ...`, order)
+//     }
+// }
 
-class EmailService {
-    sendEmail(email, message) {
-        console.log(`Email отправлен на ${email}: ${message}`);
-    }
-}
+// class EmailService {
+//     sendEmail(email, message) {
+//         console.log(`Email отправлен на ${email}: ${message}`);
+//     }
+// }
 
-class OrderManager {
-    constructor(paymentService, repository, emailService) {
-        this.paymentService = paymentService
-        this.repository = repository
-        this.emailService = emailService
-    }
+// class OrderManager {
+//     constructor(paymentService, repository, emailService) {
+//         this.paymentService = paymentService
+//         this.repository = repository
+//         this.emailService = emailService
+//     }
 
-    async processOrder() {
-        const isPaid = await this.paymentService.charge(order.amount)
-        if (isPaid) {
-            this.repository.save(order)
-            this.emailService.sendEmail(order.email, "Ваш заказ успешно оплачен!")
-        }
-    }
-}
+//     async processOrder() {
+//         const isPaid = await this.paymentService.charge(order.amount)
+//         if (isPaid) {
+//             this.repository.save(order)
+//             this.emailService.sendEmail(order.email, "Ваш заказ успешно оплачен!")
+//         }
+//     }
+// }
 
 
 // class Note {
@@ -525,32 +525,381 @@ class OrderManager {
 
 // Класс NotePrinter: должен отвечать только за вывод заметки. Он должен принимать объект заметки и печатать его.
 
-class Note {
-    constructor(text, date) {
-        this.text = text;
-        this.date = date;
+// class Note {
+//     constructor(text, date) {
+//         this.text = text;
+//         this.date = date;
+//     }
+// }
+
+// class ConsolePrinter {
+//     print(note) {
+//         console.log(`--- ЗАМЕТКА ---`);
+//         console.log(`Дата: ${note.date}`);
+//         console.log(`Текст: ${note.text}`);
+//         console.log(`---------------`);
+//     }
+// }
+
+// class TelegramPrinter {
+//     print(note) {
+//         console.log(`Заметка отправлена в Телеграм`);
+//         console.log(`Дата: ${note.date}`);
+//         console.log(`Текст: ${note.text}`);
+//     }
+// }
+
+// const note1 = new Note('Заметка 1', '22.04.2026')
+// const consolePrinter = new ConsolePrinter()
+// const tgPrinter = new TelegramPrinter()
+
+// tgPrinter.print(note1)
+
+
+// O = Open/Closed Principle
+
+// class DiscountManager {
+//     calculate(amount, type) {
+//         if (type === 'standard') {
+//             return amount * 0.05
+//         }
+//         else if (type === 'vip') {
+//             return amount * 0.1
+//         }
+//         else if (type === 'premium') {
+//             return amount * 0.3
+//         }
+//     }
+// }
+
+// const discountManager = new DiscountManager()
+
+// console.log(discountManager.calculate(10_000, 'vip'))
+
+// class Discount {
+//     apply(amount) {
+//         throw new Error('Метод apply не реализован!')
+//     }
+// }
+
+// class StandartDiscount extends Discount {
+//     apply(amount) {
+//         return amount * 0.05
+//     }
+// }
+
+// class VipDiscount extends Discount {
+//     apply(amount) {
+//         return amount * 0.1
+//     }
+// }
+
+// class PremiumDiscount extends Discount {
+//     apply(amount) {
+//         return amount * 0.3
+//     }
+// }
+
+// class DiscountCalculator {
+//     calculate(amount, discount) {
+//         console.log(`Оригинальная цена: ${amount}, цена со скидкой: ${amount - discount.apply(amount)}`)
+//     }
+// }
+
+// const standard = new StandartDiscount()
+// const vip = new VipDiscount()
+// const premium = new PremiumDiscount()
+
+// const discountCalculator = new DiscountCalculator()
+// discountCalculator.calculate(10_000, premium)
+
+
+
+// 📄 Задача: «Экспорт отчетов»
+// Представь, что ты разрабатываешь корпоративную систему. Тебе поручили написать класс,
+//  который берет данные отчета и конвертирует их в нужный формат. 
+//  Сначала попросили сделать только экспорт в HTML и PDF.
+
+// ❌ Исходный код (с нарушением OCP):
+// Разработчик написал вот такой код. Он работает, но нарушает принцип OCP:
+
+// class ReportGenerator {
+//   generate(data, format) {
+//     if (format === 'html') {
+//       console.log(`Генерируем HTML отчет из данных: ${data}`);
+//       // Сложная логика генерации HTML...
+//     } else if (format === 'pdf') {
+//       console.log(`Генерируем PDF отчет из данных: ${data}`);
+//       // Сложная логика генерации PDF...
+//     } else {
+//       throw new Error("Неизвестный формат!");
+//     }
+//   }
+// }
+
+// const report = new ReportGenerator();
+// report.generate("Отчет за май", "pdf");
+
+// В чем проблема?
+// Завтра начальник придет и скажет: "Нам срочно нужен экспорт в Excel (CSV) и JSON!".
+//  Тебе придется лезть внутрь метода generate и дописывать новые else if. 
+//  Класс ReportGenerator открыт для модификации, а это нарушение принципа.
+
+
+// 📝 Твоя цель: Переписать код по OCP
+// Сделай так, чтобы при добавлении нового формата (например, CSV),
+//  нам вообще не нужно было трогать класс ReportGenerator.
+
+// Шаги для реализации:
+
+// Создай отдельные классы для каждого формата: HtmlExporter и PdfExporter.
+
+// В каждом из них реализуй метод (например, export(data)), 
+// который будет выводить нужную строку в консоль.
+
+// Перепиши ReportGenerator так, чтобы метод generate принимал два аргумента: 
+// сами данные (data) и готовый объект-экспортер (экземпляр HtmlExporter или PdfExporter).
+
+// Внутри generate просто вызывай метод export() у переданного объекта.
+
+// Для проверки: добавь новый класс CsvExporter и передай его в ReportGenerator,
+//  не меняя код самого ReportGenerator.
+
+// class Exporter {
+//     export(data) {
+//         throw new Error('Метод export не реализован')
+//     }
+// }
+
+// class HtmlExporter extends Exporter {
+//     export(data) {
+//         return `HTML Файл готов! <div>${data}</div>`
+//     }
+// }
+
+// class PdfExporter extends Exporter {
+//     export(data) {
+//         return `PDF Файл готов! <pdf>${data}</pdf>`
+//     }
+// }
+
+// class ReportGenerator {
+//     generate(data, exporter) {
+//         console.log(exporter.export(data))
+//     }
+// }
+
+// const htmlExporter = new HtmlExporter()
+// const pdfExporter = new PdfExporter()
+
+// const reportGenerator = new ReportGenerator()
+
+// reportGenerator.generate('Javascript', pdfExporter)
+
+// L - Liskov Substitution Principle
+
+// class Vehicle {
+//     move() {
+//         console.log('Мы начали движение!')
+//     }
+// }
+
+// class MotorizedVehicle extends Vehicle {
+//     startEngine() {
+//         console.log('Заводим двигатель!')
+//     }
+// }
+
+// class Car extends MotorizedVehicle {
+
+// }
+
+// class Bus extends MotorizedVehicle {
+
+// }
+
+// class Bicycle extends Vehicle {
+
+// }
+
+// const car1 = new Car()
+// car1.startEngine()
+// car1.move()
+
+// const bus1 = new Bus()
+// bus1.startEngine()
+// bus1.move()
+
+// const bicycle1 = new Bicycle()
+// bicycle1.move()
+
+
+// class Rectangle {
+//     constructor(width, height) {
+//         this.width = width
+//         this.height = height
+//     }
+
+//     setWidth(width) {
+//         this.width = width
+//     }
+//     setHeight(height) {
+//         this.height = height
+//     }
+//     getArea() {
+//         return this.width * this.height
+//     }
+// }
+
+// class Square extends Rectangle {
+//     setWidth(width) {
+//         this.width = width;
+//         this.height = width;
+//     }
+
+//     setHeight(height) {
+//         this.width = height;
+//         this.height = height;
+//     }
+// }
+
+// const rectangle1 = new Rectangle(10, 20)
+// rectangle1.setWidth(5)
+// console.log(rectangle1.getArea())
+
+// const square = new Square(20, 20)
+// console.log(square)
+// square.setWidth(10)
+// console.log(square.getArea())
+
+
+// class Shape {
+//     getArea() {
+//         throw new Error("Метод должен быть реализован");
+//     }
+// }
+
+// class Rectangle extends Shape {
+//     constructor(width, height) {
+//         super()
+//         this.width = width;
+//         this.height = height;
+//     }
+//     setWidth(width) {
+//         this.width = width
+//     }
+//     setHeight(height) {
+//         this.height = height
+//     }
+//     getArea() { return this.width * this.height; }
+// }
+
+// class Square extends Shape {
+//     constructor(side) {
+//         super()
+//         this.side = side;
+//     }
+//     setSide(side) {
+//         this.side = side
+//     }
+//     getArea() { return this.side * this.side; }
+// }
+
+// const rectangle = new Rectangle(10, 20)
+// const square = new Square(20)
+
+// console.log(rectangle)
+// console.log(square)
+
+// console.log(rectangle.getArea())
+// console.log(square.getArea())
+
+
+// I - Interface Segregation Principle
+
+// interface IPrinter {
+//     print(document: string): void
+// }
+
+// interface IScanner {
+//     scan(document: string): void
+// }
+
+// interface IFax {
+//     fax(document: string): void
+// }
+
+// class BasicPrinter implements IPrinter {
+//     print(document: string): void {
+//         console.log(`Печатаю: ${document}`);
+//     }
+// }
+
+// class PrinterWithScanner implements IPrinter, IScanner {
+//     print(document: string) {
+//         console.log(`Печатаю: ${document}`);
+//     }
+//     scan(document: string) {
+//         console.log(`Сканирую: ${document}`);
+//     }
+// }
+
+// class MultiFunctionalPrinter implements IPrinter, IScanner, IFax {
+//     print(document: string) {
+//         console.log(`Печатаю: ${document}`);
+//     }
+//     scan(document: string) {
+//         console.log(`Сканирую: ${document}`);
+//     }
+//     fax(document: string) {
+//         console.log(`Отправляю факс: ${document}`);
+//     }
+// }
+
+// const printer1 = new MultiFunctionalPrinter()
+// printer1.print('123123')
+// printer1.scan('123123')
+// printer1.fax('123123')
+
+
+// D - Dependency Inversion Principle
+class PaymentProcesser {
+    makeTransaction(amount) {
+        throw new Error('Метод не реализован')
     }
 }
 
-class ConsolePrinter {
-    print(note) {
-        console.log(`--- ЗАМЕТКА ---`);
-        console.log(`Дата: ${note.date}`);
-        console.log(`Текст: ${note.text}`);
-        console.log(`---------------`);
+class KaspiPay extends PaymentProcesser{
+    makeTransaction(amount) {
+        console.log(`Списано ${amount}тг через Kaspi Pay`);
     }
 }
 
-class TelegramPrinter {
-    print(note) {
-        console.log(`Заметка отправлена в Телеграм`);
-        console.log(`Дата: ${note.date}`);
-        console.log(`Текст: ${note.text}`);
+class HalykPay extends PaymentProcesser {
+    makeTransaction(amount) {
+        console.log(`Списано ${amount}тг через Halyk Pay`);
     }
 }
 
-const note1 = new Note('Заметка 1', '22.04.2026')
-const consolePrinter = new ConsolePrinter()
-const tgPrinter = new TelegramPrinter()
+class FreedomPay extends PaymentProcesser {
+    makeTransaction(amount) {
+        console.log(`Списано ${amount}тг через Freedom Pay`);
+    }
+}
 
-tgPrinter.print(note1)
+class Store {
+    constructor(paymentProcess) {
+        this.paymentProcess = paymentProcess
+    }
+
+    purchase(amount) {
+        this.paymentProcess.makeTransaction(amount)
+    }
+}
+
+const kaspi = new KaspiPay()
+const halyk = new HalykPay()
+const freedom = new FreedomPay()
+
+const myStore = new Store(freedom)
+myStore.purchase(5000)
